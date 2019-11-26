@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/prefixContent">
+        <file>content/desc.html</file>
+    </qresource>
+</RCC>
