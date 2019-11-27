@@ -1,9 +1,13 @@
-#include "Dialog/Description/Description.h"
 #include "ui_DescriptionDlg.h"
 
-DescriptionDialog::DescriptionDialog(QWidget *parent) : QDialog(parent), ui(new Ui::DescriptionDialog)
+#include "Dialog/Description/Description.h"
+
+DescriptionDialog::DescriptionDialog(QWidget *parent) : QDialog(parent)
+                                                      , ui(new Ui::DescriptionDialog)
+                                                      , fileModel(QString("./desc.html"))
 {
     ui->setupUi(this);
+    ui->textBrowserDesc->setText(fileModel.get_fileContent());
 }
 
 
