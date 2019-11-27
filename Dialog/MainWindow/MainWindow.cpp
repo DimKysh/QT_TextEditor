@@ -39,7 +39,6 @@ void MainWindow::on_pushButtonBack_clicked()
     QTextCursor cursor;
 
     ui->textEditMain->setText(undoFunctional.get_last_element_from_queueForUndo());
-
     ui->textEditMain->textCursor().setPosition(ui->textEditMain->toPlainText().size());
 }
 

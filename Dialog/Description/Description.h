@@ -2,6 +2,7 @@
 #define DESCRIPTION_H
 
 #include <QDialog>
+#include "Model/DescriptionFileModel/DescriptionFileModel.h"
 
 namespace Ui{
 class DescriptionDialog;
@@ -17,6 +18,7 @@ public:
 
 private:
    Ui::DescriptionDialog *ui;
+   DescriptionFileModel fileModel;
    };
 
 #endif
