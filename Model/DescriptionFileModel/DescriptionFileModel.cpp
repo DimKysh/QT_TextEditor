@@ -2,38 +2,36 @@
 
 #include <QMessageBox>
 #include <QString>
+#include <QResource>
 
-DescriptionFileModel::DescriptionFileModel()
-{
-    QFile file("./content/desc.html");
-
-    if(file.open(QIODevice::ReadOnly))
-    {
-        QTextStream stream(&file);
-        fileContentStr = stream.read(file.size());
-    }
-    else
-    {
-        QMessageBox().critical(nullptr,"Critical","Can't open description file.");
-    }
-}
-
-DescriptionFileModel::DescriptionFileModel(QString const & str)
-{
-    QFile file(str);
-
-    if(file.open(QIODevice::ReadOnly))
-    {
-        QTextStream stream(&file);
-        fileContentStr = stream.read(file.size());
-    }
-    else
-    {
-        QMessageBox().critical(nullptr,"Critical","Can't open description file.");
-    }
-}
+DescriptionFileModel::DescriptionFileModel(){}
 
 DescriptionFileModel::~DescriptionFileModel(){}
+
+bool::DescriptionFileModel::open_descriptionFile()
+{
+    QFile descriptionFile(":/content/desc.html");
+
+    if(descriptionFile.exists())
+    {
+        if(descriptionFile.open(QIODevice::ReadOnly))
+        {
+            QTextStream stream(&descriptionFile);
+            fileContentStr = stream.read(descriptionFile.size());
+        }
+        else
+        {
+            QMessageBox().critical(nullptr,"Critical","Can't open description file.\nCan't open for read.");
+            return false;
+        }
+        return true;
+    }
+    else
+    {
+        QMessageBox().critical(nullptr,"Critical","Can't open description file.\nFile doesn't exsist.");
+        return false;
+    }
+}
 
 //////--GETTERS--//////
 

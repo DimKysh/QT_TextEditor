@@ -8,10 +8,10 @@ class DescriptionFileModel
 {
 public:
     explicit DescriptionFileModel();
-    DescriptionFileModel(QString const & str = nullptr);
    ~DescriptionFileModel();
 
     QString const & get_fileContent() const;
+    bool open_descriptionFile();
 private:
     QString fileContentStr;
 };
