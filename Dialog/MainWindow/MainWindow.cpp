@@ -46,6 +46,9 @@ void MainWindow::on_pushButtonOpenDesc_clicked()
 {
     DescriptionDialog descDlg;
 
-    descDlg.setModal(true);
-    descDlg.exec();
+    if(descDlg.get_isFileOpen())
+    {
+        descDlg.setModal(true);
+        descDlg.exec();
+    }
 }
