@@ -23,8 +23,14 @@ private slots:
 
     void on_pushButtonOpenDesc_clicked();
 
+    void on_pushButtonSaveFile_clicked();
+
 private:
     Ui::MainWindow *ui;
     UndoModel undoFunctional;
+    QString userName;
+    void set_userName();
+
+
 };
 #endif // MAINWINDOW_H

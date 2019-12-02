@@ -50,6 +50,19 @@
      <string>Back</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButtonSaveFile">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>680</y>
+      <width>251</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save File</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

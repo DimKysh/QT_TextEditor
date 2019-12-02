@@ -21,12 +21,11 @@ SOURCES += \
     Dialog/Description/Description.cpp                  \
     Model/UndoModel/UndoModel.cpp                       \
     Model/DescriptionFileModel/DescriptionFileModel.cpp
-
 HEADERS += \
     Dialog/MainWindow/MainWindow.h                      \
     Dialog/Description/Description.h                    \
     Model/UndoModel/UndoModel.h                         \
-    Model/DescriptionFileModel/DescriptionFileModel.h   \
+    Model/DescriptionFileModel/DescriptionFileModel.h
 
 FORMS += \
     Dialog/Description/DescriptionDlg.ui  \
