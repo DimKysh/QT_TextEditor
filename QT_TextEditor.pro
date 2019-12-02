@@ -16,16 +16,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/main.cpp \
-    Dialog/MainWindow/MainWindow.cpp
-
+    src/main.cpp                                        \
+    Dialog/MainWindow/MainWindow.cpp                    \
+    Dialog/Description/Description.cpp                  \
+    Model/UndoModel/UndoModel.cpp                       \
+    Model/DescriptionFileModel/DescriptionFileModel.cpp
 HEADERS += \
-    Dialog/MainWindow/MainWindow.h
+    Dialog/MainWindow/MainWindow.h                      \
+    Dialog/Description/Description.h                    \
+    Model/UndoModel/UndoModel.h                         \
+    Model/DescriptionFileModel/DescriptionFileModel.h
 
 FORMS += \
-    Dialog/MainWindow/MainWindow.ui
+    Dialog/Description/DescriptionDlg.ui  \
+    Dialog/MainWindow/MainWindow.ui       \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    content/resources.qrc \
+
