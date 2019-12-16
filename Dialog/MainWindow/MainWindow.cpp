@@ -4,6 +4,7 @@
 
 #include <QMouseEvent>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QFile>
 #include <QDebug>
 
@@ -13,6 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     , undoFunctional()
 {
     ui->setupUi(this);
+
+    this->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    QObject::connect(this, SIGNAL(CallContextMenu(const QPoint&)), this, SLOT(contextMenu_calling(const QPoint&)));
 }
 
 MainWindow::~MainWindow()
@@ -59,7 +64,7 @@ void MainWindow::on_pushButtonSaveFile_clicked()
 {
     this->set_userName();
     QString strUtf8 = "Text file(*.txt);;Binary file(*." + userName + ")";
-    QString s = QFileDialog::getSaveFileName(this, "Main title window", QDir::current().path(),QString(trUtf8(strUtf8.toStdString().c_str())));
+    QString s = QFileDialog::getSaveFileName(this, "Save file", QDir::current().path(),QString(trUtf8(strUtf8.toStdString().c_str())));
 
     if(s.length() > 0)
     {
@@ -147,6 +152,32 @@ void MainWindow::on_pushButtonSaveFile_clicked()
      }
 }
 
+void MainWindow::on_pushButtonOpenFile_clicked()
+{
+    this->set_userName();
+
+    QString strUtf8 = "Text file(*.txt);;Binary file(*." + userName + ")";
+    QString s = QFileDialog::getOpenFileName(this, "Open file for reading", QDir::current().path(),QString(trUtf8(strUtf8.toStdString().c_str())));
+
+    if(s.length() > 0)
+    {
+        int index = s.indexOf("txt");
+        QFile file(s);
+
+        if(file.open((QFile::ReadOnly)))
+        {
+            if(index != -1)
+            {
+                QString content;
+                QTextStream stream(&file);
+
+                content = stream.readAll();
+                ui->textEditMain->setText(content);
+                ui->textEditMain->setReadOnly(true);
+            }
+        }
+    }
+}
 
 void MainWindow::set_userName()
 {
@@ -155,4 +186,23 @@ void MainWindow::set_userName()
         userName = qgetenv("USERNAME");
     else
         userName = "USER";
+}
+
+void MainWindow::mousePressEvent(QMouseEvent * event)
+{
+    if(event->buttons() == Qt::RightButton)
+    {
+        emit CallContextMenu(QCursor::pos());
+    }
+}
+
+void MainWindow::contextMenu_calling(const QPoint& pos)
+{
+    QMenu contextMenu(tr("Context menu"),this);
+
+    QAction openFileForReading("Open file for reading", this);
+    connect(&openFileForReading, SIGNAL(triggered()), this, SLOT(on_pushButtonOpenFile_clicked()));
+    contextMenu.addAction(&openFileForReading);
+
+    contextMenu.exec(pos);
 }
