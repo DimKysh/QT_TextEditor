@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/content">
         <file>desc.html</file>
+        <file>conf.ini</file>
     </qresource>
 </RCC>
