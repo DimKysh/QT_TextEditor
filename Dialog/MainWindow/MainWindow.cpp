@@ -1,3 +1,4 @@
+#include "Config/SingletonGlobalConfig/SingletonGlobalConfig.hpp"
 #include "Dialog/MainWindow/MainWindow.h"
 #include "Dialog/Description/Description.h"
 #include "ui_MainWindow.h"
@@ -18,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 
     QObject::connect(this, SIGNAL(CallContextMenu(const QPoint&)), this, SLOT(contextMenu_calling(const QPoint&)));
+
+    GlobalConfig::Instance().TouchSingleton();
 }
 
 MainWindow::~MainWindow()
